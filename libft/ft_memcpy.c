@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 17:00:23 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:40:18 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/11/25 17:57:25 by jshin             #+#    #+#             */
+/*   Updated: 2022/01/28 13:41:52 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	size_t	i;
 
 	i = 0;
-	if (dst == NULL && src == NULL)
+	if (!dst && !src)
 		return (NULL);
 	while (i < n)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:51:46 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:30:35 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/03 17:33:46 by jshin             #+#    #+#             */
+/*   Updated: 2021/12/03 17:37:25 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*temp;
+	t_list	*next;
 
-	if (lst == NULL || del == NULL)
-		return ;
-	while (*lst != NULL)
+	while (*lst)
 	{
-		temp = (*lst)->next;
-		del((*lst)->content);
+		next = (*lst)->next;
+		(*del)((*lst)->content);
+		(*lst)->next = NULL;
 		free(*lst);
-		*lst = temp;
+		*lst = next;
 	}
-	*lst = NULL;
 }

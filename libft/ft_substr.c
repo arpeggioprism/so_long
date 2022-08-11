@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 17:49:50 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/07 21:02:35 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/06 19:19:53 by jshin             #+#    #+#             */
+/*   Updated: 2021/12/06 19:22:27 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	slen;
-	char			*sub;
+	char	*substr;
+	size_t	new_len;
 
 	if (s == NULL)
 		return (NULL);
-	slen = ft_strlen(s);
-	if (slen < start)
-	{
-		sub = (char *)malloc(1);
-		if (sub == NULL)
-			return (NULL);
-		sub[0] = '\0';
-		return (sub);
-	}
-	if (len > (size_t)slen - start)
-		len = (size_t)slen - start;
-	sub = (char *)malloc(sizeof(char) * (len + 1));
-	if (sub == NULL)
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	new_len = ft_strlen(s + start);
+	if (new_len < len)
+		len = new_len;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
 		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	ft_strlcpy(substr, s + start, len + 1);
+	return (substr);
 }

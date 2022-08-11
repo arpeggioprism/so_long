@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/11 22:21:05 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/11 23:09:00 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_map(t_game *game, char *file)
 	}
 	close(fd);
 	game->map = ft_split(line, '\n');
-	game->width = ft_strlen(game->map[0]);
+	game->width = (int)ft_strlen(game->map[0]);
 	free(line);
 }
 

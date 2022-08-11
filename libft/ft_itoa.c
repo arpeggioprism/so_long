@@ -3,53 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/28 10:15:04 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:29:57 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/06 18:19:30 by jshin             #+#    #+#             */
+/*   Updated: 2021/12/06 18:22:31 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_length(int n)
+static int	lennum(int n)
 {
-	int	count;
+	int	i;
 
-	count = 1;
-	while (n / 10 != 0)
+	i = 0;
+	if (n == 0)
+		return (1);
+	while ((unsigned int)n > 0)
 	{
-		n = n / 10;
-		count++;
+		n /= 10;
+		i++;
 	}
-	if (n < 0)
-		return (count + 1);
-	else
-		return (count);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	int				len;
-	char			*a;
-	unsigned int	nbr;
+	int		len;
+	char	*p;
+	long	r;
 
-	len = get_length(n);
-	a = (char *)ft_calloc(sizeof(char), len + 1);
-	if (a == NULL)
-		return (NULL);
-	if (n < 0)
-		nbr = -n;
-	else
-		nbr = n;
-	a[len--] = '\0';
-	while (len >= 0)
+	r = n;
+	len = lennum(r);
+	if (r < 0)
 	{
-		a[len] = (nbr % 10) + 48;
-		nbr = nbr / 10;
+		len++;
+		r = -1 * r;
+	}
+	p = (char *)malloc(len + 1);
+	if (!p)
+		return (NULL);
+	p[len] = 0;
+	while (len > 0)
+	{
+		p[len - 1] = r % 10 + '0';
+		r /= 10;
 		len--;
 	}
 	if (n < 0)
-		a[0] = '-';
-	return (a);
+		p[0] = '-';
+	return (p);
 }

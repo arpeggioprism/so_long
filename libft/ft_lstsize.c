@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 15:23:09 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:31:23 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/03 16:58:58 by jshin             #+#    #+#             */
+/*   Updated: 2021/12/03 17:21:29 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	int	size;
 
 	size = 0;
-	while (lst != NULL)
+	while (lst)
 	{
 		lst = lst->next;
 		size++;

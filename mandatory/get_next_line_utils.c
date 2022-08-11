@@ -3,68 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 12:53:19 by jiwkwon           #+#    #+#             */
-/*   Updated: 2022/07/04 13:39:17 by jiwkwon          ###   ########.fr       */
+/*   Created: 2022/05/03 16:37:59 by jshin             #+#    #+#             */
+/*   Updated: 2022/08/11 23:12:57 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_gnl_strlen(char *str)
+void	*ft_calloc_gnl(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset_gnl(ptr, 0, (count * size));
+	return (ptr);
+}
+
+void	*ft_memset_gnl(void *s, int c, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	while (i < n)
+		((unsigned char *)s)[i++] = (unsigned char)c;
+	return (s);
 }
 
-void	*ft_gnl_calloc(size_t count, size_t size)
+size_t	ft_strlen_gnl(const char *s)
 {
-	int		len;
-	int		i;
-	char	*ptr;
+	size_t	len;
 
-	len = count * size;
-	ptr = (char *)malloc(len);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		ptr[i] = '\0';
-		i++;
-	}
-	return ((void *)ptr);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-char	*ft_gnl_strjoin(char *s, char *buf)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
-	int		i;
-	int		j;
-	char	*join;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	if (!s || !buf)
+	if (!s1 || !s2)
 		return (NULL);
-	join = (char *)ft_gnl_calloc(sizeof(char),
-			ft_gnl_strlen(s) + ft_gnl_strlen(buf) + 1);
-	if (!join)
+	str = (char *)malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[i])
-	{
-		join[i] = s[i];
-		i++;
-	}
 	j = 0;
-	while (buf[j])
-	{
-		join[i + j] = buf[j];
-		j++;
-	}
-	free(s);
-	return (join);
+	while (s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = 0;
+	return (str);
 }

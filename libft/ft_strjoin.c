@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 18:24:11 by jiwkwon           #+#    #+#             */
-/*   Updated: 2022/08/09 23:03:44 by jshin            ###   ########.fr       */
+/*   Created: 2021/11/30 15:44:09 by jshin             #+#    #+#             */
+/*   Updated: 2022/08/11 23:08:57 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		len1;
-	int		len2;
-	char	*dst;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
 	if (!s1)
 		s1 = ft_calloc(1, sizeof(char));
 	if (!s2)
 		s2 = ft_calloc(1, sizeof(char));
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	dst = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (dst == NULL)
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
 		return (NULL);
-	ft_strlcpy(dst, s1, len1 + 1);
-	ft_strlcat(dst, s2, len1 + len2 + 1);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = 0;
 	free(s1);
 	free(s2);
-	return (dst);
+	return (str);
 }

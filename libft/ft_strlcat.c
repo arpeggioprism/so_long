@@ -3,34 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 09:38:09 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:43:16 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/06 13:25:55 by jshin             #+#    #+#             */
+/*   Updated: 2022/02/05 17:52:06 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
 {
-	size_t	i;
-	size_t	dlen;
-	size_t	slen;
+	unsigned int	count;
 
-	i = 0;
-	dlen = ft_strlen(dst);
-	slen = ft_strlen(src);
-	if (dlen >= dstsize)
-		return (dstsize + slen);
-	else
+	count = 0;
+	while (*dest && count < size)
 	{
-		while (src[i] != '\0' && (dlen + i) < (dstsize - 1))
-		{
-			dst[dlen + i] = src[i];
-			i++;
-		}
-		dst[dlen + i] = '\0';
-		return (dlen + slen);
+		dest++;
+		count++;
 	}
+	while (count + 1 < size && *src)
+	{
+		*dest++ = *src++;
+		count++;
+	}
+	if (count < size)
+		*dest = 0;
+	while (*src)
+	{
+		src++;
+		count++;
+	}
+	return (count);
 }

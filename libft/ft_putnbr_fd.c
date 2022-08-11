@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 17:13:51 by jiwkwon           #+#    #+#             */
-/*   Updated: 2021/12/06 11:41:28 by jiwkwon          ###   ########.fr       */
+/*   Created: 2021/12/03 16:43:00 by jshin             #+#    #+#             */
+/*   Updated: 2021/12/03 16:49:36 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	nbr;
+	char	temp;
 
-	if (fd < 0)
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
 		return ;
-	if (n < 0)
+	}
+	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
-		nbr = -n;
+		ft_putnbr_fd(-n, fd);
 	}
-	else
-		nbr = n;
-	if (nbr / 10 != 0)
+	else if (n > 9)
 	{
-		ft_putnbr_fd(nbr / 10, fd);
-		ft_putchar_fd(nbr % 10 + 48, fd);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
 	else
-		ft_putchar_fd(nbr % 10 + 48, fd);
+	{
+		temp = n + '0';
+		ft_putchar_fd(temp, fd);
+	}
 }

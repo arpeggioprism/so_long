@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 12:53:42 by jiwkwon           #+#    #+#             */
-/*   Updated: 2022/07/04 13:31:41 by jiwkwon          ###   ########.fr       */
+/*   Created: 2022/05/03 14:42:18 by jshin             #+#    #+#             */
+/*   Updated: 2022/08/11 23:13:28 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,13 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 20
 # endif
 
 char	*get_next_line(int fd);
-char	*read_and_join(int fd, char *s);
-int		is_new_line(char *s);
-char	*get_result_line(char *s);
-char	*get_new_static(char *s);
-
-size_t	ft_gnl_strlen(char *str);
-void	*ft_gnl_calloc(size_t count, size_t size);
-char	*ft_gnl_strjoin(char *s, char *buf);
+void	*ft_calloc_gnl(size_t count, size_t size);
+void	*ft_memset_gnl(void *s, int c, size_t n);
+size_t	ft_strlen_gnl(const char *s);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 #endif

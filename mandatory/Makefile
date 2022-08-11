@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 14:32:26 by jiwkwon           #+#    #+#              #
-#    Updated: 2022/07/07 14:42:25 by jiwkwon          ###   ########.fr        #
+#    Updated: 2022/08/11 22:55:29 by jshin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ../libft/
 MLX_DIR = ../mlx/
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INC = -I./ -I../libft -I../mlx
 MLX_API = -framework Opengl -framework Appkit
 
@@ -28,7 +28,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 		@echo "\033[34m\n[Compiling mlx]\033[37m"
-		@sleep 3
 		@make -C $(MLX_DIR)
 		@echo "\033[34m[Compiling libft]\033[37m"
 		@make -C $(LIBFT_DIR)

@@ -3,130 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwkwon <jiwkwon@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 12:54:03 by jiwkwon           #+#    #+#             */
-/*   Updated: 2022/07/04 13:39:45 by jiwkwon          ###   ########.fr       */
+/*   Created: 2022/05/03 14:59:06 by jshin             #+#    #+#             */
+/*   Updated: 2022/08/11 23:12:55 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_and_join(int fd, char *s);
-int		is_new_line(char *s);
-char	*get_result_line(char *s);
-char	*get_new_static(char *s);
+char	*read_join(int fd, char *save);
+int		nl_in_buf(char *buf);
+char	*resultline(char *save);
+char	*linesave(char *save);
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
-	char		*line;
-	char		*temp;
+	static char	*save;
+	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 		return (NULL);
-	temp = s;
-	s = read_and_join(fd, s);
-	if (!s)
-	{
-		free(temp);
-		return (NULL);
-	}
-	line = get_result_line(s);
-	s = get_new_static(s);
-	return (line);
+	save = read_join(fd, save);
+	res = resultline(save);
+	save = linesave(save);
+	return (res);
 }
 
-char	*read_and_join(int fd, char *s)
+char	*read_join(int fd, char *save)
 {
-	int		rbyte;
+	char	*temp;
 	char	*buf;
+	int		rbyte;
 
-	if (!s)
-		s = (char *)ft_gnl_calloc(sizeof(char), 1);
-	if (!s)
+	if (!save)
+		save = ft_calloc_gnl(1, sizeof(char));
+	if (!save)
 		return (NULL);
-	buf = (char *)ft_gnl_calloc(sizeof(char), BUFFER_SIZE + 1);
+	buf = ft_calloc_gnl((BUFFER_SIZE + 1), sizeof(char));
 	if (!buf)
 		return (NULL);
-	rbyte = 1;
-	while (rbyte > 0 && is_new_line(s) < 0)
+	while (!nl_in_buf(buf))
 	{
 		rbyte = read(fd, buf, BUFFER_SIZE);
-		if (rbyte == -1)
-		{
-			free(buf);
-			return (NULL);
-		}
 		buf[rbyte] = '\0';
-		s = ft_gnl_strjoin(s, buf);
+		if (rbyte == 0)
+			break ;
+		temp = save;
+		save = ft_strjoin_gnl(save, buf);
+		free(temp);
 	}
-	free (buf);
-	return (s);
+	free(buf);
+	return (save);
 }
 
-int	is_new_line(char *s)
+int	nl_in_buf(char *buf)
 {
 	int	i;
 
-	if (!s)
+	if (!buf)
 		return (0);
 	i = 0;
-	while (s[i])
+	while (buf[i])
 	{
-		if (s[i] == '\n')
-			return (i);
+		if (buf[i] == '\n')
+			return (1);
 		i++;
 	}
-	return (-1);
+	return (0);
 }
 
-char	*get_result_line(char *s)
+char	*resultline(char *save)
 {
+	char	*res;
 	int		i;
-	int		index;
-	char	*result;
+	int		j;
 
-	if (!s[0])
-		return (NULL);
-	index = 0;
-	while (s[index] && s[index] != '\n')
-		index++;
-	result = (char *)ft_gnl_calloc(sizeof(char), index + 2);
-	if (!result)
+	if (!save[0])
 		return (NULL);
 	i = 0;
-	while (i < index)
+	while (save[i] && save[i] != '\n')
+		i++;
+	res = ft_calloc_gnl(i + 2, sizeof(char));
+	if (!res)
+		return (NULL);
+	j = i;
+	i = 0;
+	while (i < j)
 	{
-		result[i] = s[i];
+		res[i] = save[i];
 		i++;
 	}
-	if (s[i] == '\n')
-		result[i] = s[i];
-	return (result);
+	if (save[i] == '\n')
+		res[i] = '\n';
+	return (res);
 }
 
-char	*get_new_static(char *s)
+char	*linesave(char *save)
 {
-	int		i;
-	int		index;
 	char	*new;
+	int		i;
+	int		j;
 
-	index = 0;
-	while (s[index] && s[index] != '\n')
-		index++;
-	if (!s[index])
+	i = 0;
+	while (save[i] && save[i] != '\n')
+		i++;
+	if (!save[i])
 	{
-		free(s);
+		free(save);
 		return (NULL);
 	}
-	new = (char *)ft_gnl_calloc(sizeof(char), ft_gnl_strlen(s) - index + 1);
+	j = i + 1;
+	new = ft_calloc_gnl(ft_strlen_gnl(save) - i + 2, sizeof(char));
 	if (!new)
 		return (NULL);
-	index++;
 	i = 0;
-	while (s[index])
-		new[i++] = s[index++];
-	free(s);
+	while (save[j])
+		new[i++] = save[j++];
+	free(save);
 	return (new);
 }
