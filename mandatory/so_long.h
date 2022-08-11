@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/11 22:07:34 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/11 22:19:32 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct s_game
 	int		width;
 	int		p_h;
 	int		p_w;
-	int		c_h;
-	int		c_w;
 	int		e_h;
 	int		e_w;
 	int		col_num;

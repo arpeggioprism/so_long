@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/11 21:44:01 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/11 22:36:29 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	move_player(t_game *game, int x, int y)
 	}
 	game->map[game->p_h][game->p_w] = '0';
 	game->map[game->p_h + y][game->p_w + x] = 'P';
-	game->walk_count++;
-	ft_putstr_fd("walk: ", 1);
-	ft_putnbr_fd(game->walk_count, 1);
-	ft_putchar_fd('\n', 1);
 	moved_image_load(game, x, y);
+	ft_putstr_fd("walk: ", 1);
+	ft_putnbr_fd(game->walk_count++, 1);
+	ft_putchar_fd('\n', 1);
 	is_end(game);
 	game->p_h += y;
 	game->p_w += x;
