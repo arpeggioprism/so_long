@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 09:59:49 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/17 13:02:07 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ void	check_pcen(t_game *game, int i, int j, int p)
 			else if (game->map[h][w] == 'C')
 				game->col_num++;
 			else if (game->map[h][w] == 'E')
-				game->e_num += ((game->e_h[i] = h, game->e_w[i] = w, \
+				game->e_num += ((game->e_h[++i] = h, game->e_w[i] = w, \
 				game->e_h[i] = h, game->e_w[i] = w, 1));
 			else if (game->map[h][w] == 'N')
-				game->n_num += ((game->n_h[j] = h, game->n_w[j] = w, \
+				game->n_num += ((game->n_h[++j] = h, game->n_w[j] = w, \
 				game->e_h[j] = h, game->e_w[j] = w, 1));
 		}
 	}
+	// game->n_h[j] = ((game->n_w[i] = 0 , 0));
 	if (p != 1 || game->col_num < 1 || game->e_num < 1)
 		error_message_exit("Invalid PCEN\n");
 }

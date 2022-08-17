@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 10:33:52 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/17 12:58:52 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ void	move_player(t_game *game, char front, int x, int y)
 		&& ++game->col_count == game->col_num)
 			full_of_collectibles(game);
 	}
-	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.player[game->direction][game->walk_count % 4], \
-	(game->p_w + x) * 64, (game->p_h + y) * 64);
 	if (game->map[game->p_h][game->p_w] != 'E')
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.water, game->p_w * 64, game->p_h * 64);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.closed, game->p_w * 64, game->p_h * 64);
+	mlx_put_image_to_window(game->mlx, game->win, \
+	game->image.player[game->direction][game->walk_count % 4], \
+	(game->p_w + x) * 64, (game->p_h + y) * 64);
 	print_walks_on_window(game);
 	is_end((game->p_h += y, game->p_w += x, game));
 }

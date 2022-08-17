@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:13:22 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 10:19:04 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/17 12:53:18 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,16 @@ void	image_load(t_game *game)
 		w = 0;
 		while (w < game->width)
 		{
-			if (game->map[h][w] == 'P')
+			if (game->map[h][w] == 'P' || game->map[h][w] == 'N')
 			{
 				mlx_put_image_to_window(game->mlx, game->win, \
 								game->image.water, w * 64, h * 64);
+				if (game->map[h][w] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, \
 				game->image.player[2][0], w++ * 64, h * 64);
+				else if (game->map[h][w] == 'N')
+				mlx_put_image_to_window(game->mlx, game->win, \
+				game->image.enemy[2][0], w++ * 64, h * 64);
 				continue;
 			}
 			put_image(game, game->map[h][w], w, h);
