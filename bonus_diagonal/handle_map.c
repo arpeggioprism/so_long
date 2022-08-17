@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 13:02:07 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 04:24:54 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,44 @@ void	check_wall(t_game *game)
 	}
 }
 
-void	check_pcen(t_game *game, int i, int j, int p)
+void	check_pcen(t_game *game, int i, int j, int h)
 {
-	int h;
 	int w;
+	int	e_h[game->height * game->width];
+	int	e_w[game->height * game->width];
+	int	n_h[game->height * game->width];
+	int	n_w[game->height * game->width];
+	int	n_walk[game->height * game->width];
 
-	h = -1;
 	while (++h < game->height)
 	{
 		w = -1;
 		while (++w < game->width)
 		{
 			if (game->map[h][w] == 'P')
-				p += ((game->p_h = h, game->p_w = w), 1);
+				game->p_num += ((game->p_h = h, game->p_w = w, 1));
 			else if (game->map[h][w] == 'C')
 				game->col_num++;
 			else if (game->map[h][w] == 'E')
-				game->e_num += ((game->e_h[++i] = h, game->e_w[i] = w, \
-				game->e_h[i] = h, game->e_w[i] = w, 1));
+				game->e_num += ((e_h[++i] = h, e_w[i] = w, 1));
 			else if (game->map[h][w] == 'N')
-				game->n_num += ((game->n_h[++j] = h, game->n_w[j] = w, \
-				game->e_h[j] = h, game->e_w[j] = w, 1));
+				game->n_num += ((n_h[++j] = h, n_w[j] = w, n_walk[j] = 0, 1));
 		}
 	}
-	// game->n_h[j] = ((game->n_w[i] = 0 , 0));
-	if (p != 1 || game->col_num < 1 || game->e_num < 1)
+	if (game->p_num != 1 || game->col_num < 1 || game->e_num < 1)
 		error_message_exit("Invalid PCEN\n");
+	game->e_h = ((game->e_w = \
+	(int *)malloc(sizeof(int) * game->e_num), game->n_h = \
+	(int *)malloc(sizeof(int) * game->n_num), game->n_w = \
+	(int *)malloc(sizeof(int) * game->n_num), game->n_walk = \
+	(int *)malloc(sizeof(int) * game->n_num), \
+	(int *)malloc(sizeof(int) * game->e_num)));
+	i = -1;
+	while (i++ < game->e_num)
+		game->e_h[i] = ((game->e_w[i] = e_w[i], e_h[i]));
+	i = -1;
+	while (i++ < game->n_num)
+		game->n_h[i] = ((game->n_w[i] = n_w[i], game->n_walk[i] = n_walk[i], n_h[i]));
 }
 
 void	check_rectangular(t_game *game)
@@ -116,12 +128,12 @@ void	check_map(t_game *game)
 		{
 			if (game->map[h][w] != '1' && game->map[h][w] != '0' &&
 				game->map[h][w] != 'P' && game->map[h][w] != 'C' &&
-				game->map[h][w] != 'N' && game->map[h][w] != 'E')
+				game->map[h][w] != 'E' && game->map[h][w] != 'N')
 				error_message_exit("Invalid Map\n");
 			w++;
 		}
 		h++;
 	}
 	check_wall(game);
-	check_pcen(game, -1, -1, 0);
+	check_pcen(game, -1, -1, -1);
 }

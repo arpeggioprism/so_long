@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:13:22 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 12:53:18 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 04:26:07 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	put_image(t_game *game, char c, int w, int h)
 								game->image.closed, w * 64, h * 64);
 	else if (c == 'N')
 		mlx_put_image_to_window(game->mlx, game->win, \
-								game->image.enemy[game->n_direction][game->n_walk_count % 4], w * 64, h * 64);
+								game->image.enemy[game->n_d][game->n_walk[game->n_i] % 4], w * 64, h * 64);
 	else if (c == 'O')
 		mlx_put_image_to_window(game->mlx, game->win, \
 								game->image.opened, w * 64, h * 64);
@@ -113,10 +113,10 @@ void	image_load(t_game *game)
 		w = 0;
 		while (w < game->width)
 		{
+			mlx_put_image_to_window(game->mlx, game->win, \
+								game->image.water, w * 64, h * 64);
 			if (game->map[h][w] == 'P' || game->map[h][w] == 'N')
 			{
-				mlx_put_image_to_window(game->mlx, game->win, \
-								game->image.water, w * 64, h * 64);
 				if (game->map[h][w] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, \
 				game->image.player[2][0], w++ * 64, h * 64);

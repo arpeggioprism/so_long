@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/17 10:26:54 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 04:24:46 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,21 @@ typedef struct s_game
 	int		width;
 	int		p_h;
 	int		p_w;
+	int		p_num;
 	int		*e_h;
 	int		*e_w;
+	int		*e_walk;
+	int		e_num;
+	int		n_i;
 	int		*n_h;
 	int		*n_w;
-	int		direction;
-	int		n_direction;
-	int		e_num;
 	int		n_num;
+	int		n_d;
+	int		t_h;
+	int		t_w;
+	char	cur_c;
+	int		*n_walk;
+	int		direction;
 	int		col_num;
 	int		col_count;
 	int		walk_count;
@@ -76,7 +83,7 @@ void	get_map(t_game *game, char *map);
 void	check_map(t_game *game);
 void	check_rectangular(t_game *game);
 void	check_wall(t_game *game);
-void	check_pcen(t_game *game, int i, int j, int p);
+void	check_pcen(t_game *game, int i, int j, int h);
 
 /*handle_image.c*/
 void	player_image_init(t_game *game);
@@ -93,8 +100,8 @@ int		key_hook(int key, t_game *game);
 
 /*handle_key2.c*/
 void	exit_door_enemy(t_game *game, int x, int y, int h, int w);
-void	wall_enemy(t_game *game, int h, int w);
-void	move_enemy(t_game *game, char front, int x, int y, int h, int w);
+void	enemy_wall(t_game *game);
+void	move_enemy(t_game *game, char front, int x, int y);
 void	enemy(t_game *game, int x, int y);
 
 
