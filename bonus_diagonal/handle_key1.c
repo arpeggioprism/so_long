@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/18 04:37:48 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 09:29:49 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	exit_door(t_game *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->win, \
 							game->image.water, game->p_w * 64, game->p_h * 64);
 	print_walks_on_window(game);
+	game->checker[game->p_h + y][game->p_w + x] = 'P';
+	game->checker[game->p_h][game->p_w] = '0';
 	game->p_h += y;
 	game->p_w += x;
 }
@@ -59,15 +61,17 @@ void	full_of_collectibles(t_game *game)
 	}
 }
 
-void	move_player(t_game *game, char front, int x, int y)
+void	move_player(t_game *game, char next_c, int x, int y)
 {
-	if (front == '1')
+	if (game->checker[game->p_h + y][game->p_w + x] == 'N')
+		leave_game(game, "fail\n");
+	if (next_c == '1')
 		wall(game);
-	else if (front == 'E')
+	else if (next_c == 'E')
 		exit_door(game, x, y);
-	if (front == '1' || front == 'E')
+	if (next_c == '1' || next_c == 'E')
 		return ;
-	if (front == 'C')
+	if (next_c == 'C')
 	{
 		game->map[game->p_h + y][game->p_w + x] = '0';
 		if (mlx_put_image_to_window(game->mlx, game->win, \
@@ -85,6 +89,8 @@ void	move_player(t_game *game, char front, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.water, game->p_w * 64, game->p_h * 64);
 	print_walks_on_window(game);
+	game->checker[game->p_h + y][game->p_w + x] = 'P';
+	game->checker[game->p_h][game->p_w] = '0';
 	is_end((game->p_h += y, game->p_w += x, game));
 }
 

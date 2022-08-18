@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/18 04:24:46 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 09:02:38 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
+	char	**checker;
 	int		height;
 	int		width;
 	int		p_h;

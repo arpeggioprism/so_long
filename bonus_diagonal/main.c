@@ -6,11 +6,12 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:01:45 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/18 04:24:55 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/18 09:29:50 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 void	game_init(t_game *game)
 {
@@ -66,7 +67,7 @@ void	print_walks_on_window(t_game *game)
 
 void	var_init(t_game *game)
 {
-	int	i;
+	int i;
 	int	j;
 
 	i = ((game->image.wall = NULL, game->image.water = NULL, \
