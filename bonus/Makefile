@@ -6,14 +6,14 @@
 #    By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 14:32:26 by jiwkwon           #+#    #+#              #
-#    Updated: 2022/08/17 10:19:08 by jshin            ###   ########.fr        #
+#    Updated: 2022/08/20 17:34:04 by jshin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main.c handle_map.c handle_image.c handle_key1.c handle_key2.c \
-	handle_exit.c get_next_line.c get_next_line_utils.c
+SRCS = main.c map.c map_utils.c image.c player.c player_utils.c print.c \
+		enemy.c enemy_utils.c exit.c get_next_line.c get_next_line_utils.c 
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = ../libft/

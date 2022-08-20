@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key2.c                                      :+:      :+:    :+:   */
+/*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:14:29 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/18 09:29:49 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/21 00:10:33 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ void	enemy_exit_door(t_game *game, int x, int y)
 	if (game->cur_c == 'E')
 		mlx_put_image_to_window(game->mlx, game->win, \
 							game->image.closed, game->t_w * 64, game->t_h * 64);
-	else 
+	else
 		mlx_put_image_to_window(game->mlx, game->win, \
 							game->image.water, game->t_w * 64, game->t_h * 64);
 	++game->n_walk[game->n_i];
 	game->checker[game->t_h + y][game->t_w + x] = 'N';
 	game->checker[game->t_h][game->t_w] = '0';
-	game->t_h += y;
-	game->t_w += x;
 }
 
 void	enemy_wall(t_game *game)
@@ -48,61 +46,58 @@ void	enemy_wall(t_game *game)
 
 void	move_enemy(t_game *game, char next_c, int x, int y)
 {
-	if (game->checker[game->t_h + y][game->t_w + x] == 'P')
-		leave_game(game, "fail\n");
-	if (game->t_h + y == game->p_h && game->t_w + x == game->p_w)
+	if (game->checker[game->t_h + y][game->t_w + x] == 'P' ||
+	(game->t_h + y == game->p_h && game->t_w + x == game->p_w))
 		leave_game(game, "\033[32mFail\n");
-	if (next_c == '1')
+	else if (next_c == '1')
 		enemy_wall(game);
 	else if (next_c == 'E')
 		enemy_exit_door(game, x, y);
-	if (next_c == '1' || next_c == 'E')
+	if (next_c == '1')
 		return ;
 	if (next_c == 'C')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, (game->t_w + x) * 64, (game->t_h + y) * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.grape, (game->t_w + x) * 64, (game->t_h + y) * 64);
-	}
+		water_collectible(game, game->t_w + x, game->t_h + y);
 	else if (next_c == 'O')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, (game->t_w + x) * 64, (game->t_h + y) * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.opened, (game->t_w + x) * 64, (game->t_h + y) * 64);
-	}
-	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.enemy[game->n_d][game->n_walk[game->n_i] % 4], \
-	(game->t_w + x) * 64, (game->t_h + y) * 64);
-	game->checker[game->t_h + y][game->t_w + x] = 'N';
-	game->checker[game->t_h][game->t_w] = '0';
-	if (game->checker[game->t_h][game->t_w] == 'N')
-		;
-	else if (game->cur_c == '0')
+		water_opened(game, game->t_w + x, game->t_h + y);
+	print_enemy_and_change_checker(game, game->n_walk[game->n_i] % 4, x, y);
+	if (game->cur_c == 'N' || game->cur_c == '0')
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.water, game->t_w * 64, game->t_h * 64);
 	else if (game->cur_c == 'E')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->t_w * 64, game->t_h * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.closed, game->t_w * 64, game->t_h * 64);
-	}
+		water_closed(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'C')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->t_w * 64, game->t_h * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.grape, game->t_w * 64, game->t_h * 64);
-	}
+		water_collectible(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'O')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->t_w * 64, game->t_h * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.opened, game->t_w * 64, game->t_h * 64);
-	}
+		water_opened(game, game->t_w, game->t_h);
 	game->n_h[game->n_i] += ((game->n_w[game->n_i] += x, y));
 	++game->n_walk[game->n_i];
+}
+
+int	loop_hook(t_game *game)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	while (game->time_count++ > 7000)
+	{
+		i = -1;
+		while (++i < game->n_num)
+		{
+			
+			get_enemy_key(game, i, &x, &y);
+			if ((x == 0) || (y == 0))
+			{
+				game->cur_c = \
+				game->map[game->n_h[i]][game->n_w[i]];
+				game->t_h = game->n_h[i];
+				game->t_w = game->n_w[i];
+				game->n_i = i;
+				move_enemy(game, game->map[game->n_h[i] + y] \
+							[game->n_w[i] + x], x, y);
+			}
+		}
+		game->time_count %= 7000;
+	}
+	return (0);
 }
