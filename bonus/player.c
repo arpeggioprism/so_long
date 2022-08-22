@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 02:53:13 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:13:22 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	full_of_collectibles(t_game *game)
 void	move_player(t_game *game, char next_c, int x, int y)
 {
 	if (game->checker[game->p_h + y][game->p_w + x] == 'N')
-		leave_game(game, "Fail\n");
+		leave_game(game, "\033[33mFail\n");
 	if (next_c == '1')
 		wall(game);
 	else if (next_c == 'E')

@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:14:29 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 02:53:19 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:13:48 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	enemy_wall(t_game *game)
 void	move_enemy(t_game *game, char next_c, int x, int y)
 {
 	if (game->checker[game->t_h + y][game->t_w + x] == 'P')
-		leave_game(game, "\033[32mFail\n");
+		leave_game(game, "\033[33mFail\n");
 	else if (next_c == '1')
 		enemy_wall(game);
 	else if (next_c == 'E')

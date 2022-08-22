@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 02:53:18 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:06:33 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,16 @@ void	free_machine(t_game *game)
 	free(game->map);
 	free(game->checker);
 	free(game->checker_n_num);
-	free(game->e_h);
-	free(game->e_w);
-	free(game->n_h);
-	free(game->n_w);
-	free(game->n_walk);
+	if (game->e_h)
+		free(game->e_h);
+	if (game->e_w)
+		free(game->e_w);
+	if (game->n_h)
+		free(game->n_h);
+	if (game->n_w)
+		free(game->n_w);
+	if (game->n_walk)
+		free(game->n_walk);
 }
 
 int	leave_game(t_game *game, char *str)

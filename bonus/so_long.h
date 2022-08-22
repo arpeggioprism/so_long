@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 02:49:06 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:06:38 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,9 @@ void	check_wall(t_game *game);
 void	check_pcen(t_game *game, t_variables *v, int h, int w);
 
 /* map_utils.c */
+void	free_error_exit(t_game *game, char *str);
 void	assign_free(t_game *game, t_variables *v);
+void	cooridnate_malloc(t_game *game, t_variables *v);
 
 /* image.c */
 void	player_image_init(t_game *game, int h, int w);
@@ -145,5 +147,6 @@ int		leave_game(t_game *game, char *str);
 void	free_machine(t_game *game);
 void	error_message_exit(char *str);
 void	is_end(t_game *game);
+void	free_exit_assigning(t_game *game, int n, char *str);
 
 #endif

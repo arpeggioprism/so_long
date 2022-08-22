@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/04 14:32:26 by jiwkwon           #+#    #+#              #
-#    Updated: 2022/08/23 02:53:16 by jshin            ###   ########.fr        #
+#    Created: 2022/07/04 14:32:26 by jshin	           #+#    #+#              #
+#    Updated: 2022/08/23 04:05:47 by jshin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ../libft/
 MLX_DIR = ../mlx/
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 INC = -I./ -I../libft -I../mlx
 MLX_API = -framework Opengl -framework Appkit
 

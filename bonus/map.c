@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 02:53:15 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:06:36 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ void	check_wall(t_game *game)
 	while (h < game->height)
 	{
 		if (game->map[h][0] != '1' || game->map[h][game->width - 1] != '1')
+		{
+			free_machine(game);
 			error_message_exit("Invaild Wall\n");
+		}
 		w = 0;
 		while (w < game->width)
 		{
 			if (game->map[0][w] != '1' || game->map[game->height - 1][w] != '1')
+			{
+				free_machine(game);
 				error_message_exit("Invalid Wall\n");
+			}
 			w++;
 		}
 		h++;
@@ -64,11 +70,7 @@ void	check_wall(t_game *game)
 
 void	check_pcen(t_game *game, t_variables *v, int i, int j)
 {
-	v->e_h = (int *)malloc(sizeof(int) * game->height * game->width);
-	v->e_w = (int *)malloc(sizeof(int) * game->height * game->width);
-	v->n_h = (int *)malloc(sizeof(int) * game->height * game->width);
-	v->n_w = (int *)malloc(sizeof(int) * game->height * game->width);
-	v->n_walk = (int *)malloc(sizeof(int) * game->height * game->width);
+	cooridnate_malloc(game, v);
 	v->h = -1;
 	while (++v->h < game->height)
 	{
@@ -87,7 +89,7 @@ void	check_pcen(t_game *game, t_variables *v, int i, int j)
 		}
 	}
 	if (game->p_num != 1 || game->col_num < 1 || game->e_num < 1)
-		error_message_exit("Invalid PCEN\n");
+		free_error_exit(game, "Invalid PCEN\n");
 }
 
 void	check_rectangular(t_game *game)
@@ -119,7 +121,10 @@ void	check_map(t_game *game)
 			if (game->map[h][w] != '1' && game->map[h][w] != '0' &&
 				game->map[h][w] != 'P' && game->map[h][w] != 'C' &&
 				game->map[h][w] != 'E' && game->map[h][w] != 'N')
-				error_message_exit("Invalid Map\n");
+				{
+					free_machine(game);
+					error_message_exit("Invalid Map\n");
+				}
 			w++;
 		}
 		h++;
