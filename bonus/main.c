@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:01:45 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:18:28 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 19:21:26 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,13 @@ void	var_init(t_game *game)
 	int	i;
 	int	j;
 
-	i = ((game->image.wall = NULL, game->image.water = NULL, \
-	game->image.grape = NULL, game->image.closed = NULL, \
-	game->image.opened = NULL, game->mlx = NULL, game->win = NULL, \
+	i = ((game->mlx = NULL, game->win = NULL, \
 	game->e_h = NULL, game->e_w = NULL, game->n_h = NULL, \
 	game->n_w = NULL, game->p_h = 0, game->p_w = 0, game->p_num = 0, \
 	game->e_num = 0, game->n_num = 0, game->col_num = 0, game->col_count = 0, \
 	game->walk_count = 0, game->direction = 0, game->n_d = 0, game->cur_c = 0, \
 	game->t_h = 0, game->t_w = 0, game->time_count = 0, -1));
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-		{
-			game->image.player[i][j] = NULL;
-			game->image.enemy[i][j] = NULL;
-		}
-	}
 	game->checker_n_num = (int **)malloc(sizeof(int *) * game->height);
-	i = -1;
 	while (++i < game->height)
 	{
 		j = -1;

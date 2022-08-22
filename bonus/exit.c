@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:13:56 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 19:00:31 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,19 @@ void	error_message_exit(char *str)
 	exit(1);
 }
 
-int	leave_game(t_game *game, char *str)
+void	free_machine(t_game *game)
 {
-	int i = -1;
-	int	j;
-	if (str)
-		ft_putstr_fd(str, 1);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_image(game->mlx, game->image.closed);
-	mlx_destroy_image(game->mlx, game->image.grape);
-	mlx_destroy_image(game->mlx, game->image.opened);
-	mlx_destroy_image(game->mlx, game->image.wall);
-	mlx_destroy_image(game->mlx, game->image.water);
-	while (++i < 4)
-	{
-		j = 0;
-		while (j < 4)
-			mlx_destroy_image(game->mlx, game->image.player[i][j++]);
-	}
-	i = 0;
-	while (game->map[i])
-		free(game->map[i++]);
-	i = 0;
-	while (game->checker[i])
-		free(game->checker[i++]);
-	i = 0;
-	while (i < game->height)	
-		free(game->checker_n_num[i++]);
+	int	i;
+
+	i = -1;
+	while (game->map[++i])
+		free(game->map[i]);
+	i = -1;
+	while (game->checker[++i])
+		free(game->checker[i]);
+	i = -1;
+	while (++i < game->height)
+		free(game->checker_n_num[i]);
 	free(game->map);
 	free(game->checker);
 	free(game->checker_n_num);
@@ -54,6 +40,32 @@ int	leave_game(t_game *game, char *str)
 	free(game->n_h);
 	free(game->n_w);
 	free(game->n_walk);
+}
+
+int	leave_game(t_game *game, char *str)
+{
+	int	i;
+	int	j;
+
+	if (str)
+		ft_putstr_fd(str, 1);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->image.closed);
+	mlx_destroy_image(game->mlx, game->image.grape);
+	mlx_destroy_image(game->mlx, game->image.opened);
+	mlx_destroy_image(game->mlx, game->image.wall);
+	mlx_destroy_image(game->mlx, game->image.water);
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+		{
+			mlx_destroy_image(game->mlx, game->image.player[i][j]);
+			mlx_destroy_image(game->mlx, game->image.enemy[i][j]);
+		}
+	}
+	free_machine(game);
 	system("leaks so_long");
 	exit(0);
 }

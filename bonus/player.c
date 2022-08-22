@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 20:11:25 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:26:27 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,10 @@ void	move_player(t_game *game, char next_c, int x, int y)
 
 int	key_hook(int key, t_game *game, int x, int y)
 {
-	// int	i;
-	
 	get_player_key(&key, game, &x, &y);
 	game->cur_c = game->map[game->p_h][game->p_w];
 	if ((x == 0 && y) || (x && y == 0))
 		move_player(game, \
 					game->map[game->p_h + y][game->p_w + x], x, y);
-	// if (game->n_num > 0)
-	// {
-	// 	i = -1;
-	// 	while (++i < game->n_num)
-	// 	{
-	// 		get_enemy_key(game, i, &x, &y);
-	// 		if ((x == 0) || (y == 0))
-	// 		{
-	// 			game->cur_c = \
-	// 			game->map[game->n_h[i]][game->n_w[i]];
-	// 			game->t_h = game->n_h[i];
-	// 			game->t_w = game->n_w[i];
-	// 			game->n_i = i;
-	// 			move_enemy(game, game->map[game->n_h[i] + y] \
-	// 						[game->n_w[i] + x], x, y);
-	// 		}
-	// 	}
-	// }
 	return (0);
 }

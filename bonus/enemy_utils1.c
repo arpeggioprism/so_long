@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_utils.c                                      :+:      :+:    :+:   */
+/*   enemy_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:35:46 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:20:41 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:48:04 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	water_collectible(t_game *game, int x, int y)
 
 void	get_enemy_key(t_game *game, int i, int *x, int *y)
 {
-	int temp;
+	int	temp;
 
 	if (game->p_h > game->n_h[i])
 		*y = 1;
@@ -65,42 +65,9 @@ void	get_enemy_key(t_game *game, int i, int *x, int *y)
 		*x = -1;
 	else
 		*x = 0;
-	if (*x == 1 && *y == 1)
-	{
-		if (game->p_w - game->n_w[i] < game->p_h - game->n_h[i])
-			*y = ((*x = 1, 0));
-		else
-			*y = ((*x = 0, 1));
-	}
-	else if (*x == 1 && *y == -1)
-	{
-		if (game->p_w - game->n_w[i] < game->p_h - game->n_h[i])
-			*y = ((*x = 1, 0));
-		else
-			*y = ((*x = 0, -1));
-	}
-	else if (*x == -1 && *y == 1)
-	{
-		if (game->p_w - game->n_w[i] < game->p_h - game->n_h[i])
-			*y = ((*x = -1, 0));
-		else
-			*y = ((*x = 0, 1));
-	}
-	else if (*x == -1 && *y == -1)
-	{
-		if (game->p_w - game->n_w[i] < game->p_h - game->n_h[i])
-			*y = ((*x = -1, 0));
-		else
-			*y = ((*x = 0, -1));
-	}
-	
-	temp = 0;
+	enemy_two_abs1_to_another(game, i, x, y);
 	if (game->map[game->n_h[i] + *y][game->n_w[i] + *x] == '1')
-	{
-		temp = *x;
-		*x = *y;
-		*y = temp;
-	}
+		*y = ((temp = *x, *x = *y, temp));
 	if (*x == 0 && *y == -1)
 		game->n_d = 0;
 	else if (*x == -1 && *y == 0)

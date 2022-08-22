@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:02:04 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 19:20:22 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,19 +124,25 @@ void	move_enemy(t_game *game, char front, int x, int y);
 void	enemy(t_game *game, int x, int y);
 int		loop_hook(t_game *game);
 
-/* enemy_utils */
+/* enemy_utils1.c */
 void	get_enemy_key(t_game *game, int i, int *x, int *y);
 void	print_enemy_and_change_checker(t_game *game, int image, int x, int y);
 void	water_opened(t_game *game, int x, int y);
 void	water_closed(t_game *game, int x, int y);
 void	water_collectible(t_game *game, int x, int y);
 
-/* print */
+/* enemy_utils2.c */
+void	enemy_two_abs1_to_another(t_game *game, int i, int *x, int *y);
+void	enemy_when_x_1(t_game *game, int i, int *x, int *y);
+void	enemy_when_x_minus1(t_game *game, int i, int *x, int *y);
+
+/* print.c */
 void	print_walks_on_window(t_game *game);
 void	refresh_first_line(t_game *game);
 
-/* exit */
+/* exit.c */
 int		leave_game(t_game *game, char *str);
+void	free_machine(t_game *game);
 void	error_message_exit(char *str);
 void	is_end(t_game *game);
 

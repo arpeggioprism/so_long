@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:14:29 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:06:51 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:53:30 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	enemy_wall(t_game *game)
 
 void	move_enemy(t_game *game, char next_c, int x, int y)
 {
-	if (game->checker[game->t_h + y][game->t_w + x] == 'P' ||
-	(game->t_h + y == game->p_h && game->t_w + x == game->p_w))
+	if (game->checker[game->t_h + y][game->t_w + x] == 'P')
 		leave_game(game, "\033[32mFail\n");
 	else if (next_c == '1')
 		enemy_wall(game);
@@ -90,18 +89,14 @@ int	loop_hook(t_game *game)
 		i = -1;
 		while (++i < game->n_num)
 		{
-			
 			get_enemy_key(game, i, &x, &y);
-			if ((x == 0) || (y == 0))
-			{
-				game->cur_c = \
-				game->map[game->n_h[i]][game->n_w[i]];
-				game->t_h = game->n_h[i];
-				game->t_w = game->n_w[i];
-				game->n_i = i;
-				move_enemy(game, game->map[game->n_h[i] + y] \
-							[game->n_w[i] + x], x, y);
-			}
+			game->cur_c = \
+			game->map[game->n_h[i]][game->n_w[i]];
+			game->t_h = game->n_h[i];
+			game->t_w = game->n_w[i];
+			game->n_i = i;
+			move_enemy(game, game->map[game->n_h[i] + y] \
+						[game->n_w[i] + x], x, y);
 		}
 		game->time_count %= 10000;
 	}

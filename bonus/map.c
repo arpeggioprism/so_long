@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 17:40:54 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 19:11:53 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	check_pcen(t_game *game, t_variables *v, int i, int j)
 	v->n_h = (int *)malloc(sizeof(int) * game->height * game->width);
 	v->n_w = (int *)malloc(sizeof(int) * game->height * game->width);
 	v->n_walk = (int *)malloc(sizeof(int) * game->height * game->width);
-
 	v->h = -1;
 	while (++v->h < game->height)
 	{
@@ -83,11 +82,8 @@ void	check_pcen(t_game *game, t_variables *v, int i, int j)
 			else if (game->map[v->h][v->w] == 'E')
 				game->e_num += ((v->e_h[++i] = v->h, v->e_w[i] = v->w, 1));
 			else if (game->map[v->h][v->w] == 'N')
-			{
 				game->n_num += ((v->n_h[++j] = v->h, v->n_w[j] = v->w, \
-								v->n_walk[j] = 0, 1));
-				game->checker_n_num[v->h][v->w]++; 
-			}
+				v->n_walk[j] = 0, game->checker_n_num[v->h][v->w]++, 1));
 		}
 	}
 	if (game->p_num != 1 || game->col_num < 1 || game->e_num < 1)
