@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 17:41:51 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:13:56 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	error_message_exit(char *str)
 
 int	leave_game(t_game *game, char *str)
 {
-	int (j), i = -1;
+	int i = -1;
+	int	j;
 	if (str)
 		ft_putstr_fd(str, 1);
 	mlx_destroy_window(game->mlx, game->win);
@@ -42,8 +43,17 @@ int	leave_game(t_game *game, char *str)
 	i = 0;
 	while (game->checker[i])
 		free(game->checker[i++]);
-	(free(game->map), free(game->checker), free(game->e_h), free(game->e_w));
-	(free(game->n_h), free(game->n_w), free(game->n_walk));
+	i = 0;
+	while (i < game->height)	
+		free(game->checker_n_num[i++]);
+	free(game->map);
+	free(game->checker);
+	free(game->checker_n_num);
+	free(game->e_h);
+	free(game->e_w);
+	free(game->n_h);
+	free(game->n_w);
+	free(game->n_walk);
 	system("leaks so_long");
 	exit(0);
 }

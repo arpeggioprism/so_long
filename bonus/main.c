@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:01:45 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 22:59:08 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:18:28 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ void	var_init(t_game *game)
 			game->image.enemy[i][j] = NULL;
 		}
 	}
+	game->checker_n_num = (int **)malloc(sizeof(int *) * game->height);
+	i = -1;
+	while (++i < game->height)
+	{
+		j = -1;
+		game->checker_n_num[i] = (int *)malloc(sizeof(int) * game->width);
+		while (++j < game->width)
+			game->checker_n_num[i][j] = 0;
+	}
+	game->checker_n_num[i] = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -66,7 +76,6 @@ int	main(int argc, char **argv)
 	check_map(&game);
 	game_init(&game);
 	mlx_hook(game.win, KEY_PRESS, 0, key_hook, &game);
-	// mlx_do_key_autorepeaton(game.mlx);
 	if (game.n_num > 0)
 		mlx_loop_hook(game.mlx, loop_hook, &game);
 	mlx_hook(game.win, DESTROY_NOTIFY, 0, leave_game, &game);
