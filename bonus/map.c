@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:06:36 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:58:15 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ void	check_map(t_game *game)
 			if (game->map[h][w] != '1' && game->map[h][w] != '0' &&
 				game->map[h][w] != 'P' && game->map[h][w] != 'C' &&
 				game->map[h][w] != 'E' && game->map[h][w] != 'N')
-				{
-					free_machine(game);
-					error_message_exit("Invalid Map\n");
-				}
+			{
+				free_machine(game);
+				error_message_exit("Invalid Map\n");
+			}
 			w++;
 		}
 		h++;

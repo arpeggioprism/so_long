@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:35:46 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:06:32 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:58:09 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_enemy_and_change_checker(t_game *game, int image, int x, int y)
 	game->cur_c = game->map[game->t_h][game->t_w];
 }
 
-void	water_opened(t_game *game, int x, int y)
+void	tile_opened(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.tile, x * 64, y * 64);
@@ -33,7 +33,7 @@ void	water_opened(t_game *game, int x, int y)
 	game->image.opened, x * 64, y * 64);
 }
 
-void	water_closed(t_game *game, int x, int y)
+void	tile_closed(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.tile, x * 64, y * 64);
@@ -41,7 +41,7 @@ void	water_closed(t_game *game, int x, int y)
 	game->image.closed, x * 64, y * 64);
 }
 
-void	water_collectible(t_game *game, int x, int y)
+void	tile_collectible(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.tile, x * 64, y * 64);

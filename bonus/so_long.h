@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:06:38 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:59:13 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int		key_hook(int key, t_game *game, int x, int y);
 /* player_utils.c */
 void	print_eaten_check_collectibles(t_game *game, int x, int y);
 void	get_player_key(int *key, t_game *game, int *x, int *y);
+void	player_tile_closed(t_game *game);
 
 /* enemy.c */
 void	enemy_exit_door(t_game *game, int x, int y);
@@ -129,9 +130,9 @@ int		loop_hook(t_game *game);
 /* enemy_utils1.c */
 void	get_enemy_key(t_game *game, int i, int *x, int *y);
 void	print_enemy_and_change_checker(t_game *game, int image, int x, int y);
-void	water_opened(t_game *game, int x, int y);
-void	water_closed(t_game *game, int x, int y);
-void	water_collectible(t_game *game, int x, int y);
+void	tile_opened(t_game *game, int x, int y);
+void	tile_closed(t_game *game, int x, int y);
+void	tile_collectible(t_game *game, int x, int y);
 
 /* enemy_utils2.c */
 void	enemy_two_abs1_to_another(t_game *game, int i, int *x, int *y);

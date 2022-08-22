@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:13:22 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 04:58:16 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ void	move_player(t_game *game, char next_c, int x, int y)
 	game->image.player[game->direction][game->walk_count % 4], \
 	(game->p_w + x) * 64, (game->p_h + y) * 64);
 	if (game->cur_c == 'E')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, \
-				game->image.tile, game->p_w * 64, game->p_h * 64);
-		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.closed, game->p_w * 64, game->p_h * 64);
-	}
+		player_tile_closed(game);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.tile, game->p_w * 64, game->p_h * 64);

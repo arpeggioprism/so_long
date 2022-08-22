@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:14:29 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:13:48 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 05:00:03 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	enemy_exit_door(t_game *game, int x, int y)
 void	enemy_wall(t_game *game)
 {
 	if (game->cur_c == 'E')
-		water_closed(game, game->t_w, game->t_h);
+		tile_closed(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'C')
-		water_collectible(game, game->t_w, game->t_h);
+		tile_collectible(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'O')
-		water_opened(game, game->t_w, game->t_h);
+		tile_opened(game, game->t_w, game->t_h);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.tile, game->t_w * 64, game->t_h * 64);
@@ -60,20 +60,20 @@ void	move_enemy(t_game *game, char next_c, int x, int y)
 	if (next_c == '1')
 		return ;
 	if (next_c == 'C')
-		water_collectible(game, game->t_w + x, game->t_h + y);
+		tile_collectible(game, game->t_w + x, game->t_h + y);
 	else if (next_c == 'O')
-		water_opened(game, game->t_w + x, game->t_h + y);
+		tile_opened(game, game->t_w + x, game->t_h + y);
 	print_enemy_and_change_checker(game, game->n_walk[game->n_i] % 4, x, y);
 	if (game->checker_n_num[game->t_h][game->t_w] == 0 &&
 	(game->cur_c == '0' || game->cur_c == 'P' || game->cur_c == 'N'))
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.tile, game->t_w * 64, game->t_h * 64);
 	else if (game->cur_c == 'E')
-		water_closed(game, game->t_w, game->t_h);
+		tile_closed(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'C')
-		water_collectible(game, game->t_w, game->t_h);
+		tile_collectible(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'O')
-		water_opened(game, game->t_w, game->t_h);
+		tile_opened(game, game->t_w, game->t_h);
 	game->n_h[game->n_i] += ((game->n_w[game->n_i] += x, y));
 	++game->n_walk[game->n_i];
 }
