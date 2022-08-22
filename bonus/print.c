@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 21:51:21 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 17:36:40 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:15 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	refresh_first_line(t_game *game)
 	while (++i < game->width)
 	{
 		mlx_put_image_to_window(game->mlx, game->win, \
-							game->image.water, 64 * i, 64 * 0);
+							game->image.tile, 64 * i, 64 * 0);
 		mlx_put_image_to_window(game->mlx, game->win, \
 							game->image.wall, 64 * i, 64 * 0);
 	}

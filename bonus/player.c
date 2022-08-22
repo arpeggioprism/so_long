@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 01:38:26 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:13 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	wall(t_game *game)
 	game->image.closed, game->p_w * 64, game->p_h * 64);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->p_w * 64, game->p_h * 64);
+		game->image.tile, game->p_w * 64, game->p_h * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.player[game->direction][game->walk_count % 4], \
 	game->p_w * 64, game->p_h * 64);
@@ -29,7 +29,7 @@ void	wall(t_game *game)
 void	exit_door(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
-				game->image.water, (game->p_w + x) * 64, (game->p_h + y) * 64);
+				game->image.tile, (game->p_w + x) * 64, (game->p_h + y) * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 				game->image.closed, (game->p_w + x) * 64, (game->p_h + y) * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
@@ -40,7 +40,7 @@ void	exit_door(t_game *game, int x, int y)
 							game->image.closed, game->p_w * 64, game->p_h * 64);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
-							game->image.water, game->p_w * 64, game->p_h * 64);
+							game->image.tile, game->p_w * 64, game->p_h * 64);
 	print_walks_on_window(game);
 	game->checker[game->p_h + y][game->p_w + x] = 'P';
 	game->checker[game->p_h][game->p_w] = '0';
@@ -57,7 +57,7 @@ void	full_of_collectibles(t_game *game)
 	{
 		game->map[game->e_h[i]][game->e_w[i]] = 'O';
 		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->e_w[i] * 64, game->e_h[i] * 64);
+		game->image.tile, game->e_w[i] * 64, game->e_h[i] * 64);
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.opened, game->e_w[i] * 64, game->e_h[i] * 64);
 	}
@@ -81,13 +81,13 @@ void	move_player(t_game *game, char next_c, int x, int y)
 	if (game->cur_c == 'E')
 	{
 		mlx_put_image_to_window(game->mlx, game->win, \
-				game->image.water, game->p_w * 64, game->p_h * 64);
+				game->image.tile, game->p_w * 64, game->p_h * 64);
 		mlx_put_image_to_window(game->mlx, game->win, \
 		game->image.closed, game->p_w * 64, game->p_h * 64);
 	}
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->p_w * 64, game->p_h * 64);
+		game->image.tile, game->p_w * 64, game->p_h * 64);
 	print_walks_on_window(game);
 	game->checker[game->p_h + y][game->p_w + x] = 'P';
 	game->checker[game->p_h][game->p_w] = '0';

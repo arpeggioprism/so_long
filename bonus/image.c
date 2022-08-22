@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:13:22 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 17:36:37 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:17 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	image_init(t_game *game)
 
 	game->image.wall = mlx_xpm_file_to_image(game->mlx, \
 						"../image/wall.xpm", &w, &h);
-	game->image.water = mlx_xpm_file_to_image(game->mlx, \
-						"../image/water.xpm", &w, &h);
+	game->image.tile = mlx_xpm_file_to_image(game->mlx, \
+						"../image/tile.xpm", &w, &h);
 	player_image_init(game, 0, 0);
 	enemy_image_init(game, 0, 0);
-	game->image.grape = mlx_xpm_file_to_image(game->mlx, \
-						"../image/grape.xpm", &w, &h);
+	game->image.collectible = mlx_xpm_file_to_image(game->mlx, \
+						"../image/collectible.xpm", &w, &h);
 	game->image.closed = mlx_xpm_file_to_image(game->mlx, \
 						"../image/closed.xpm", &w, &h);
 	game->image.opened = mlx_xpm_file_to_image(game->mlx, \
@@ -94,7 +94,7 @@ void	put_image(t_game *game, char c, int w, int h)
 								game->image.wall, w * 64, h * 64);
 	else if (c == 'C')
 		mlx_put_image_to_window(game->mlx, game->win, \
-								game->image.grape, w * 64, h * 64);
+								game->image.collectible, w * 64, h * 64);
 	else if (c == 'E')
 		mlx_put_image_to_window(game->mlx, game->win, \
 								game->image.closed, w * 64, h * 64);
@@ -115,7 +115,7 @@ void	image_load(t_game *game)
 		while (++w < game->width)
 		{
 			mlx_put_image_to_window(game->mlx, game->win, \
-								game->image.water, w * 64, h * 64);
+								game->image.tile, w * 64, h * 64);
 			if (game->map[h][w] == 'P' || game->map[h][w] == 'N')
 			{
 				if (game->map[h][w] == 'P')

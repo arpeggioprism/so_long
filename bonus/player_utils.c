@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:26:20 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/20 18:25:10 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:15 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_eaten_check_collectibles(t_game *game, int x, int y)
 {
 	game->map[game->p_h + y][game->p_w + x] = '0';
 	if (mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.water, (game->p_w + x) * 64, (game->p_h + y) * 64) \
+	game->image.tile, (game->p_w + x) * 64, (game->p_h + y) * 64) \
 	&& ++game->col_count == game->col_num)
 		full_of_collectibles(game);
 }

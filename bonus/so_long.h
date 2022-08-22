@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 19:20:22 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:49:06 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 typedef struct s_image
 {
 	void	*wall;
-	void	*water;
-	void	*grape;
+	void	*tile;
+	void	*collectible;
 	void	*closed;
 	void	*opened;
 	void	*player[4][4];

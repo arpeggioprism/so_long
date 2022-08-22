@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 11:14:29 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:53:30 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:19 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	enemy_exit_door(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.water, (game->t_w + x) * 64, (game->t_h + y) * 64);
+	game->image.tile, (game->t_w + x) * 64, (game->t_h + y) * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.closed, (game->t_w + x) * 64, (game->t_h + y) * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
@@ -26,7 +26,7 @@ void	enemy_exit_door(t_game *game, int x, int y)
 							game->image.closed, game->t_w * 64, game->t_h * 64);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
-							game->image.water, game->t_w * 64, game->t_h * 64);
+							game->image.tile, game->t_w * 64, game->t_h * 64);
 	++game->n_walk[game->n_i];
 	game->checker[game->t_h + y][game->t_w + x] = 'N';
 	game->checker[game->t_h][game->t_w] = '0';
@@ -42,7 +42,7 @@ void	enemy_wall(t_game *game)
 		water_opened(game, game->t_w, game->t_h);
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->t_w * 64, game->t_h * 64);
+		game->image.tile, game->t_w * 64, game->t_h * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.enemy[game->n_d][game->n_walk[game->n_i] % 4], \
 	game->t_w * 64, game->t_h * 64);
@@ -67,7 +67,7 @@ void	move_enemy(t_game *game, char next_c, int x, int y)
 	if (game->checker_n_num[game->t_h][game->t_w] == 0 &&
 	(game->cur_c == '0' || game->cur_c == 'P' || game->cur_c == 'N'))
 		mlx_put_image_to_window(game->mlx, game->win, \
-		game->image.water, game->t_w * 64, game->t_h * 64);
+		game->image.tile, game->t_w * 64, game->t_h * 64);
 	else if (game->cur_c == 'E')
 		water_closed(game, game->t_w, game->t_h);
 	else if (game->cur_c == 'C')

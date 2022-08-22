@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 19:00:31 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:18 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	leave_game(t_game *game, char *str)
 		ft_putstr_fd(str, 1);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_image(game->mlx, game->image.closed);
-	mlx_destroy_image(game->mlx, game->image.grape);
+	mlx_destroy_image(game->mlx, game->image.collectible);
 	mlx_destroy_image(game->mlx, game->image.opened);
 	mlx_destroy_image(game->mlx, game->image.wall);
-	mlx_destroy_image(game->mlx, game->image.water);
+	mlx_destroy_image(game->mlx, game->image.tile);
 	i = -1;
 	while (++i < 4)
 	{
@@ -66,7 +66,6 @@ int	leave_game(t_game *game, char *str)
 		}
 	}
 	free_machine(game);
-	system("leaks so_long");
 	exit(0);
 }
 

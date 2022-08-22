@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:35:46 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/22 18:48:04 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 02:53:19 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_enemy_and_change_checker(t_game *game, int image, int x, int y)
 void	water_opened(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.water, x * 64, y * 64);
+	game->image.tile, x * 64, y * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.opened, x * 64, y * 64);
 }
@@ -36,7 +36,7 @@ void	water_opened(t_game *game, int x, int y)
 void	water_closed(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.water, x * 64, y * 64);
+	game->image.tile, x * 64, y * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.closed, x * 64, y * 64);
 }
@@ -44,9 +44,9 @@ void	water_closed(t_game *game, int x, int y)
 void	water_collectible(t_game *game, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.water, x * 64, y * 64);
+	game->image.tile, x * 64, y * 64);
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->image.grape, x * 64, y * 64);
+	game->image.collectible, x * 64, y * 64);
 }
 
 void	get_enemy_key(t_game *game, int i, int *x, int *y)
