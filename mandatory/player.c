@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 22:49:41 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:35:12 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 23:08:26 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	wall(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->image.player[game->direction][game->walk_count % 4], \
 	game->p_w * 64, game->p_h * 64);
-	printf("%d\n",++game->walk_count);
-
+	printf("%d\n", ++game->walk_count);
 }
 
 void	exit_door(t_game *game, int x, int y)
@@ -42,7 +41,7 @@ void	exit_door(t_game *game, int x, int y)
 	else
 		mlx_put_image_to_window(game->mlx, game->win, \
 							game->image.tile, game->p_w * 64, game->p_h * 64);
-	printf("%d\n",++game->walk_count);
+	printf("%d\n", ++game->walk_count);
 	game->p_h += y;
 	game->p_w += x;
 }

@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:13:22 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:35:08 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 22:11:47 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 void	player_image_init(t_game *game, int h, int w)
 {
 	game->image.player[3][3] = ((game->image.player[0][0] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/up0.xpm", &w, &h), \
+	mlx_xpm_file_to_image(game->mlx, "image/up0.xpm", &w, &h), \
 	game->image.player[0][1] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/up1.xpm", &w, &h), game->image.player[0][2] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/up2.xpm", &w, &h), \
+	"image/up1.xpm", &w, &h), game->image.player[0][2] = \
+	mlx_xpm_file_to_image(game->mlx, "image/up2.xpm", &w, &h), \
 	game->image.player[0][3] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/up3.xpm", &w, &h), game->image.player[1][0] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/left0.xpm", &w, &h), \
+	"image/up3.xpm", &w, &h), game->image.player[1][0] = \
+	mlx_xpm_file_to_image(game->mlx, "image/left0.xpm", &w, &h), \
 	game->image.player[1][1] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/left1.xpm", &w, &h), game->image.player[1][2] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/left2.xpm", \
+	"image/left1.xpm", &w, &h), game->image.player[1][2] = \
+	mlx_xpm_file_to_image(game->mlx, "image/left2.xpm", \
 	&w, &h), game->image.player[1][3] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/left3.xpm", &w, &h), game->image.player[2][0] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/down0.xpm", &w, &h), \
+	"image/left3.xpm", &w, &h), game->image.player[2][0] = \
+	mlx_xpm_file_to_image(game->mlx, "image/down0.xpm", &w, &h), \
 	game->image.player[2][1] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/down1.xpm", &w, &h), game->image.player[2][2] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/down2.xpm", &w, &h), \
+	"image/down1.xpm", &w, &h), game->image.player[2][2] = \
+	mlx_xpm_file_to_image(game->mlx, "image/down2.xpm", &w, &h), \
 	game->image.player[2][3] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/down3.xpm", &w, &h), game->image.player[3][0] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/right0.xpm", &w, &h), \
+	"image/down3.xpm", &w, &h), game->image.player[3][0] = \
+	mlx_xpm_file_to_image(game->mlx, "image/right0.xpm", &w, &h), \
 	game->image.player[3][1] = mlx_xpm_file_to_image(game->mlx, \
-	"../image/right1.xpm", &w, &h), game->image.player[3][2] = \
-	mlx_xpm_file_to_image(game->mlx, "../image/right2.xpm", &w, &h), \
-	mlx_xpm_file_to_image(game->mlx, "../image/right3.xpm", &w, &h)));
+	"image/right1.xpm", &w, &h), game->image.player[3][2] = \
+	mlx_xpm_file_to_image(game->mlx, "image/right2.xpm", &w, &h), \
+	mlx_xpm_file_to_image(game->mlx, "image/right3.xpm", &w, &h)));
 }
 
 void	image_init(t_game *game)
@@ -46,16 +46,16 @@ void	image_init(t_game *game)
 	int	w;
 
 	game->image.wall = mlx_xpm_file_to_image(game->mlx, \
-						"../image/wall.xpm", &w, &h);
+						"image/wall.xpm", &w, &h);
 	game->image.tile = mlx_xpm_file_to_image(game->mlx, \
-						"../image/tile.xpm", &w, &h);
+						"image/tile.xpm", &w, &h);
 	player_image_init(game, 0, 0);
 	game->image.collectible = mlx_xpm_file_to_image(game->mlx, \
-						"../image/collectible.xpm", &w, &h);
+						"image/collectible.xpm", &w, &h);
 	game->image.closed = mlx_xpm_file_to_image(game->mlx, \
-						"../image/closed.xpm", &w, &h);
+						"image/closed.xpm", &w, &h);
 	game->image.opened = mlx_xpm_file_to_image(game->mlx, \
-						"../image/opened.xpm", &w, &h);
+						"image/opened.xpm", &w, &h);
 }
 
 void	put_image(t_game *game, char c, int w, int h)

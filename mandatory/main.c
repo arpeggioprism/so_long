@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:01:45 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:35:09 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 23:08:03 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,15 @@ void	free_exit_assigning(t_game *game, char *str)
 	while (game->map[++i])
 		free(game->map[i]);
 	free(game->map);
-	ft_putstr_fd("\033[31mError: ", 2);
+	ft_putstr_fd("\033[31mError\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(1);
 }
 
 void	var_init(t_game *game)
 {
-
 	game->mlx = ((game->win = NULL, \
-	game->e_h = NULL, game->e_w = NULL,
+	game->e_h = NULL, game->e_w = NULL, \
 	game->p_h = 0, game->p_w = 0, game->p_num = 0, \
 	game->e_num = 0, game->col_num = 0, game->col_count = 0, \
 	game->walk_count = 0, game->direction = 0, game->cur_c = 0, NULL));

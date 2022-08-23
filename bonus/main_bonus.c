@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 10:01:45 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:58:14 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 22:47:15 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	game_init(t_game *game)
 {
@@ -48,7 +48,7 @@ void	free_exit_assigning(t_game *game, int n, char *str)
 	free(game->map);
 	free(game->checker);
 	free(game->checker_n_num);
-	ft_putstr_fd("\033[31mError: ", 2);
+	ft_putstr_fd("\033[31mError\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(1);
 }

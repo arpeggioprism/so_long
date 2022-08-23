@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:35:06 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 23:11:56 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_message_exit(char *str)
 {
-	ft_putstr_fd("\033[31mError: ", 2);
+	ft_putstr_fd("\033[31mError\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(1);
 }

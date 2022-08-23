@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:35:13 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 23:12:41 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "get_next_line.h"
 # include <string.h>
 # include <stdio.h>
-# include <fcntl.h>
 
 # define KEY_PRESS 2
 # define DESTROY_NOTIFY 17

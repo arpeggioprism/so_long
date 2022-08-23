@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_utils1.c                                     :+:      :+:    :+:   */
+/*   enemy_utils1_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:35:46 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:58:09 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 20:44:04 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	print_enemy_and_change_checker(t_game *game, int image, int x, int y)
 {

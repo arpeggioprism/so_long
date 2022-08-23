@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_utils.c                                     :+:      :+:    :+:   */
+/*   player_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:26:20 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:58:16 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 20:43:34 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	print_eaten_check_collectibles(t_game *game, int x, int y)
 {

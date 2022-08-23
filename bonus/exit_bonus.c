@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:08:01 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 04:58:11 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 23:16:00 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	error_message_exit(char *str)
 {
-	ft_putstr_fd("\033[31mError: ", 2);
+	ft_putstr_fd("\033[31mError\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(1);
 }
