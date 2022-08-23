@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:08:14 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:33:53 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 15:35:12 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	get_map(t_game *game, char *file)
 	}
 	close(fd);
 	game->map = ft_split(line, '\n');
-	game->checker = ft_split(line, '\n');
 	game->width = (int)ft_strlen(game->map[0]);
 	free(line);
 }
@@ -68,7 +67,7 @@ void	check_wall(t_game *game)
 	}
 }
 
-void	check_pcen(t_game *game, t_variables *v, int i, int j)
+void	check_pcen(t_game *game, t_variables *v, int i)
 {
 	cooridnate_malloc(game, v);
 	v->h = -1;
@@ -83,13 +82,10 @@ void	check_pcen(t_game *game, t_variables *v, int i, int j)
 				game->col_num++;
 			else if (game->map[v->h][v->w] == 'E')
 				game->e_num += ((v->e_h[++i] = v->h, v->e_w[i] = v->w, 1));
-			else if (game->map[v->h][v->w] == 'N')
-				game->n_num += ((v->n_h[++j] = v->h, v->n_w[j] = v->w, \
-				v->n_walk[j] = 0, game->checker_n_num[v->h][v->w]++, 1));
 		}
 	}
 	if (game->p_num != 1 || game->col_num < 1 || game->e_num < 1)
-		free_error_exit(game, "Invalid PCEN\n");
+		free_error_exit(game, "Invalid PCE\n");
 }
 
 void	check_rectangular(t_game *game)
@@ -120,7 +116,7 @@ void	check_map(t_game *game)
 		{
 			if (game->map[h][w] != '1' && game->map[h][w] != '0' &&
 				game->map[h][w] != 'P' && game->map[h][w] != 'C' &&
-				game->map[h][w] != 'E' && game->map[h][w] != 'N')
+				game->map[h][w] != 'E')
 			{
 				free_machine(game);
 				error_message_exit("Invalid Map\n");
@@ -130,6 +126,6 @@ void	check_map(t_game *game)
 		h++;
 	}
 	check_wall(game);
-	check_pcen(game, &v, -1, -1);
+	check_pcen(game, &v, -1);
 	assign_free(game, &v);
 }

@@ -6,7 +6,7 @@
 /*   By: jshin <jshin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:02:11 by jshin             #+#    #+#             */
-/*   Updated: 2022/08/23 15:32:13 by jshin            ###   ########.fr       */
+/*   Updated: 2022/08/23 15:35:13 by jshin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_image
 	void	*closed;
 	void	*opened;
 	void	*player[4][4];
-	void	*enemy[4][4];
 }	t_image;
 
 typedef struct s_game
@@ -46,8 +45,6 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
-	char	**checker;
-	int		**checker_n_num;
 	char	cur_c;
 	int		height;
 	int		width;
@@ -58,19 +55,10 @@ typedef struct s_game
 	int		*e_w;
 	int		*e_walk;
 	int		e_num;
-	int		n_i;
-	int		*n_h;
-	int		*n_w;
-	int		*n_walk;
-	int		n_num;
-	int		n_d;
-	int		t_h;
-	int		t_w;
 	int		direction;
 	int		col_num;
 	int		col_count;
 	int		walk_count;
-	int		time_count;
 }	t_game;
 
 typedef struct s_variables
@@ -79,9 +67,6 @@ typedef struct s_variables
 	int	w;
 	int	*e_h;
 	int	*e_w;
-	int	*n_h;
-	int	*n_w;
-	int	*n_walk;
 }	t_variables;
 
 /* main.c */
@@ -94,7 +79,7 @@ void	get_map(t_game *game, char *map);
 void	check_map(t_game *game);
 void	check_rectangular(t_game *game);
 void	check_wall(t_game *game);
-void	check_pcen(t_game *game, t_variables *v, int i, int j);
+void	check_pcen(t_game *game, t_variables *v, int i);
 
 /* map_utils.c */
 void	free_error_exit(t_game *game, char *str);
@@ -120,34 +105,11 @@ void	print_eaten_check_collectibles(t_game *game, int x, int y);
 void	get_player_key(int *key, t_game *game, int *x, int *y);
 void	player_tile_closed(t_game *game);
 
-/* enemy.c */
-void	enemy_exit_door(t_game *game, int x, int y);
-void	enemy_wall(t_game *game);
-void	move_enemy(t_game *game, char front, int x, int y);
-void	enemy(t_game *game, int x, int y);
-int		loop_hook(t_game *game);
-
-/* enemy_utils1.c */
-void	get_enemy_key(t_game *game, int i, int *x, int *y);
-void	print_enemy_and_change_checker(t_game *game, int image, int x, int y);
-void	tile_opened(t_game *game, int x, int y);
-void	tile_closed(t_game *game, int x, int y);
-void	tile_collectible(t_game *game, int x, int y);
-
-/* enemy_utils2.c */
-void	enemy_two_abs1_to_another(t_game *game, int i, int *x, int *y);
-void	enemy_when_x_1(t_game *game, int i, int *x, int *y);
-void	enemy_when_x_minus1(t_game *game, int i, int *x, int *y);
-
-/* print.c */
-void	print_walks_on_window(t_game *game);
-void	refresh_first_line(t_game *game);
-
 /* exit.c */
 int		leave_game(t_game *game, char *str);
 void	free_machine(t_game *game);
 void	error_message_exit(char *str);
 void	is_end(t_game *game);
-void	free_exit_assigning(t_game *game, int n, char *str);
+void	free_exit_assigning(t_game *game, char *str);
 
 #endif
